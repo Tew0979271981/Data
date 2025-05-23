@@ -9,10 +9,10 @@ app.get("/", (req, res) => {
   res.send("Web API is running!");
 });
 
-app.get("/test", async (req, res) => {
+app.get("/users", async (req, res) => {
   const db = mongoose.connection.db;
-  const result = await db.collection("users").findOne({});
-  res.json(result);
+  const users = await db.collection("users").find({}).toArray();
+  res.json(users);
 });
 
 const port = process.env.PORT || 3000;
